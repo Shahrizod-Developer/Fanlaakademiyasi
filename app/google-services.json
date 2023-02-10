@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "802471208341",
+    "project_id": "fcm-4ae0b",
+    "storage_bucket": "fcm-4ae0b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802471208341:android:fec6f712544af4a541c29c",
+        "android_client_info": {
+          "package_name": "com.example.fcm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802471208341-7kbskobuqe8ci31h88t7ivjh6scoc3eo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD151xjLeGueIV2xK9q6da4W2Ucd6aiMuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "802471208341-7kbskobuqe8ci31h88t7ivjh6scoc3eo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802471208341:android:3d8f404b28f38b6f41c29c",
+        "android_client_info": {
+          "package_name": "uz.smartmuslim.fanlarakademiyasi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802471208341-7kbskobuqe8ci31h88t7ivjh6scoc3eo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD151xjLeGueIV2xK9q6da4W2Ucd6aiMuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "802471208341-7kbskobuqe8ci31h88t7ivjh6scoc3eo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

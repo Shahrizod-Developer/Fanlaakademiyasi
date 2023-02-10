@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Fanlar akademiyasi</string>
+    <string name="password">Parol</string>
+    <string name="news">Qayta Aloqa</string>
+    <string name="email">Login</string>
+    <string name="login">Kirish</string>
+    <string name="content">geografik xaritadan topa olmaydigan sirli joy. Antik davrga borib taqaluvchi nom va ushbu provinsiyani o‘rab olgan sir-u sinoat tarixning ajralmas qismi hisoblanadi. Million yillar avval vulqondan chiqqan lava va tabiiy jarayonlar tufayli bu yerda noyob, o‘zga sayyoranikiga o‘xsh</string>
+    <string name="time">02.07.2023</string>
+    <string name="fullname">Qosimov Shahrizod Bahrom o\'g\'li</string>
+</resources>
