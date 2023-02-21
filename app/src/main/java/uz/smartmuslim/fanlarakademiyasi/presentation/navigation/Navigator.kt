@@ -6,4 +6,5 @@ typealias Direction = NavDirections
 
 interface Navigator {
     suspend fun navigateTo(direction: Direction)
+
 }

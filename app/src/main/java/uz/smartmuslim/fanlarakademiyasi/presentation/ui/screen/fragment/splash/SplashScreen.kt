@@ -19,5 +19,6 @@ class SplashScreen : Fragment(R.layout.screen_splash) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         viewModel.openScreen()
+
     }
 }

@@ -5,8 +5,10 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import uz.smartmuslim.adminpanel.domain.usecase.LoginScreenUseCase
+import uz.smartmuslim.fanlarakademiyasi.domain.usecase.AppealScreenUseCase
 import uz.smartmuslim.fanlarakademiyasi.domain.usecase.MainScreenUseCase
 import uz.smartmuslim.fanlarakademiyasi.domain.usecase.SplashScreenUseCase
+import uz.smartmuslim.fanlarakademiyasi.domain.usecase.impl.AppealScreenUseCaseImpl
 import uz.smartmuslim.fanlarakademiyasi.domain.usecase.impl.LoginScreenUseCaseImpl
 import uz.smartmuslim.fanlarakademiyasi.domain.usecase.impl.MainScreenUseCaseImpl
 import uz.smartmuslim.fanlarakademiyasi.domain.usecase.impl.SplashScreenUseCaseImpl
@@ -24,5 +26,8 @@ interface UseCaseModule {
 
     @Binds
     fun bindMainScreenUseCase(impl: MainScreenUseCaseImpl): MainScreenUseCase
+
+    @Binds
+    fun bindAppealScreenUseCase(impl: AppealScreenUseCaseImpl): AppealScreenUseCase
 
 }

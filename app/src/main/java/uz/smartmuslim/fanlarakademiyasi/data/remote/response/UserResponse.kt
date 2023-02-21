@@ -17,8 +17,6 @@ data class UserResponse(
     val birthDate: String,
     @SerializedName("create_date")
     val createDate: Long,
-    @SerializedName("last_modified_date")
-    val lastModifiedDate: Long
 ) {
     fun toEntity() = UserEntity(
         id,
@@ -28,6 +26,5 @@ data class UserResponse(
         address,
         birthDate,
         createDate,
-        lastModifiedDate
     )
 }

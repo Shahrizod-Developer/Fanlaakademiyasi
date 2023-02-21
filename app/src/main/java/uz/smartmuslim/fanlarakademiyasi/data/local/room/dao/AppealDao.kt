@@ -9,12 +9,15 @@ import uz.smartmuslim.fanlarakademiyasi.data.local.room.entity.AppealEntity
 @Dao
 interface AppealDao : BaseDao<AppealEntity> {
 
-    @Query("Select * From appeal Where status = 0")
+    @Query("Select * From appeal Where appeal.status = 0")
     fun getAllUnreadAppeals(): Flow<List<AppealEntity>>
 
-    @Query("Select * From appeal Where status = 1")
+    @Query("Select * From appeal ")
+    fun getAllAppeals(): List<AppealEntity>
+
+    @Query("Select * From appeal Where appeal.status = 1")
     fun getAllReadAppeals(): Flow<List<AppealEntity>>
 
-    @Query("Select * From appeal Where status = 3")
+    @Query("Select * From appeal Where appeal.status = 2")
     fun getAllAnsweredAppeals(): Flow<List<AppealEntity>>
 }

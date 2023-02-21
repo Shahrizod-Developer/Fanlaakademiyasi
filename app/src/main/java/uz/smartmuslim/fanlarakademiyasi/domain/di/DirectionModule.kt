@@ -4,9 +4,11 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import uz.smartmuslim.fanlarakademiyasi.presentation.direction.AppealScreenDirection
 import uz.smartmuslim.fanlarakademiyasi.presentation.direction.LoginScreenDirection
 import uz.smartmuslim.fanlarakademiyasi.presentation.direction.MainScreenDirection
 import uz.smartmuslim.fanlarakademiyasi.presentation.direction.SplashScreenDirection
+import uz.smartmuslim.fanlarakademiyasi.presentation.direction.impl.AppealScreenDirectionImpl
 import uz.smartmuslim.fanlarakademiyasi.presentation.direction.impl.LoginScreenDirectionImpl
 import uz.smartmuslim.fanlarakademiyasi.presentation.direction.impl.MainScreenDirectionImpl
 import uz.smartmuslim.fanlarakademiyasi.presentation.direction.impl.SplashScreenDirectionImpl
@@ -24,4 +26,7 @@ interface DirectionModule {
 
     @[Binds]
     fun bindMainScreenDirection(impl: MainScreenDirectionImpl): MainScreenDirection
+
+    @[Binds]
+    fun bindAppealScreenDirection(impl: AppealScreenDirectionImpl): AppealScreenDirection
 }

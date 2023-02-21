@@ -1,20 +1,45 @@
 package uz.smartmuslim.fanlarakademiyasi.data.model
 
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import uz.smartmuslim.fanlarakademiyasi.data.local.room.entity.AppealEntity
 import java.util.*
 
+@Parcelize
 data class AppealData(
-    val id: UUID,
-    val useId: UUID,
-    val type: AppealType,
-    val fullName:String,
-    val phoneNumber:String,
-    val passportData:String,
-    val address:String,
-    val birthDate:String,
+    val id: String,
+    val useId: String,
+    val type: String,
+    val fullName: String,
+    val phoneNumber: String,
+    val passportData: String,
+    val address: String,
+    val birthDate: String,
     val content: String,
-    val recipient: Recipient,
-    val createDate: String,
-    val lastModifiedDate: String,
-    val status: Int
-)
+    val recipient: String,
+    val createDate: Long,
+    var answer: String,
+    var answeredTime: Long,
+    val appealNumber: Int,
+    var status: Int
+) : Parcelable {
+    fun toEntity() = AppealEntity(
+        id,
+        useId,
+        fullName,
+        phoneNumber,
+        passportData,
+        address,
+        birthDate,
+        type,
+        content,
+        recipient,
+        createDate,
+        true,
+        answer,
+        answeredTime,
+        appealNumber,
+        status
+    )
+}

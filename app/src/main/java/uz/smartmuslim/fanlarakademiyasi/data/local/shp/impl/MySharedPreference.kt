@@ -12,5 +12,7 @@ class MySharedPreference @Inject constructor(
 
 
     var isFirst: Boolean by Booleans(true)
+    var login: String by Strings("")
+    var password: String by Strings("")
 
 }

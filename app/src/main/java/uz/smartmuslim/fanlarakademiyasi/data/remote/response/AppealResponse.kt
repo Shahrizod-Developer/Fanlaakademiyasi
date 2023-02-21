@@ -1,25 +1,24 @@
 package uz.smartmuslim.fanlarakademiyasi.data.remote.response
 
 import uz.smartmuslim.fanlarakademiyasi.data.local.room.entity.AppealEntity
-import uz.smartmuslim.fanlarakademiyasi.data.model.AppealType
-import uz.smartmuslim.fanlarakademiyasi.data.model.Recipient
 import java.util.*
 
-
 data class AppealResponse(
-    val id: UUID,
-    val userId: UUID,
-    val fullname: String,
-    val phoneNumber: String,
-    val passportSN: String,
-    val address: String,
-    val birthDate: String,
-    val messageType: AppealType,
-    val content: String,
-    val recipient: Recipient,
-    val createdDate: String,
-    val isComplete: Boolean,
-    val lastModifiedDate: String,
+    var id: String,
+    var userId: String,
+    var fullname: String,
+    var phoneNumber: String,
+    var passportSN: String,
+    var address: String,
+    var birthDate: String,
+    var messageType: String,
+    var content: String,
+    var recipient: String,
+    var createdDate: Long,
+    var answer: String,
+    var answeredTime: Long,
+    val appealNumber: Int,
+    var isComplete: Boolean,
 ) {
     fun toEntity() =
         AppealEntity(
@@ -29,11 +28,15 @@ data class AppealResponse(
             phoneNumber,
             passportSN,
             address,
-            messageType,
-            recipient,
             birthDate,
-            createdDate,
+            messageType,
             content,
-            lastModifiedDate
+            recipient,
+            createdDate,
+            isComplete,
+            answer,
+            answeredTime,
+            appealNumber,
+            status = 0,
         )
 }

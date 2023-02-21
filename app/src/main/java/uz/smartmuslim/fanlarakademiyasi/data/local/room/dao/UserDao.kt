@@ -8,6 +8,6 @@ import uz.smartmuslim.fanlarakademiyasi.data.local.room.entity.UserEntity
 @Dao
 interface UserDao : BaseDao<UserEntity> {
 
-    @Query("Select * From user")
+    @Query("Select * From user ")
     fun getAllUsers(): Flow<List<UserEntity>>
 }

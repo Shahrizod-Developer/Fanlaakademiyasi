@@ -11,4 +11,7 @@ interface MainScreenViewModel {
     val unreadAppealList: Flow<List<AppealData>>
     val readAppealList: Flow<List<AppealData>>
     val answeredAppealList: Flow<List<AppealData>>
+
+    fun refresh()
+    fun onClickItem(appealData: AppealData)
 }

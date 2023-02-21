@@ -25,18 +25,37 @@ class MainScreenViewModelImpl @Inject constructor(
     override val unreadAppealList = flow<List<AppealData>>()
     override val readAppealList = flow<List<AppealData>>()
     override val answeredAppealList = flow<List<AppealData>>()
-
-    init {
+    override fun refresh() {
         viewModelScope.launch {
             useCase.refreshAppealData().collectLatest { it ->
                 it.onSuccess {}.onMessage { message.emit(it.toString()) }
                     .onError { message.emit(it.toString()) }
             }
         }
+    }
+
+    override fun onClickItem(appealData: AppealData) {
+        viewModelScope.launch {
+            direction.openAppealScreen(appealData)
+        }
+    }
+
+
+    init {
+
         viewModelScope.launch {
             useCase.getAllUnreadAppeals().collectLatest {
-                Log.d("SSS", "viewmodel")
                 unreadAppealList.emit(it)
+            }
+        }
+        viewModelScope.launch {
+            useCase.getAllReadAppeals().collectLatest {
+                readAppealList.emit(it)
+            }
+        }
+        viewModelScope.launch {
+            useCase.getAllAnsweredAppeals().collectLatest {
+                answeredAppealList.emit(it)
             }
         }
     }

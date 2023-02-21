@@ -1,9 +1,9 @@
 package uz.smartmuslim.fanlarakademiyasi.domain.usecase
 
-interface SplashScreenUseCase {
-    suspend fun startScreen(): StartScreen
-}
+import kotlinx.coroutines.flow.Flow
 
-enum class StartScreen {
-    PIN, LOGIN
+interface SplashScreenUseCase {
+
+    fun isFirst():Flow<Boolean>
+     fun check():Flow<Boolean>
 }

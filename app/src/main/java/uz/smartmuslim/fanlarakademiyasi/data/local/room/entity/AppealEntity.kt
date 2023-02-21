@@ -11,9 +11,9 @@ import java.util.UUID
 @Entity(tableName = "appeal")
 data class AppealEntity(
     @PrimaryKey
-    val id: UUID,
+    val id: String,
     @ColumnInfo(name = "user_id")
-    val useId: UUID,
+    val useId: String,
     @ColumnInfo(name = "full_name")
     val fullName: String,
     @ColumnInfo(name = "phone_number")
@@ -21,17 +21,19 @@ data class AppealEntity(
     @ColumnInfo(name = "passport_data")
     val passportData: String,
     val address: String,
-    val type: AppealType,
-    val recipient: Recipient,
     @ColumnInfo(name = "birth_date")
     val birthDate: String,
-    @ColumnInfo(name = "create_date")
-    val createDate: String,
+    val type: String,
     val content: String,
-    @ColumnInfo(name = "last_modified_date")
-    val lastModifiedDate: String,
-    val answer: String = "",
-    val status: Int = 0
+    val recipient: String,
+    @ColumnInfo(name = "create_date")
+    val createDate: Long,
+    @ColumnInfo(name = "is_complete")
+    val isComplete: Boolean,
+    val answer: String,
+    val answeredTime: Long,
+    val appealNumber: Int,
+    var status: Int
 ) {
     fun toData() =
         AppealData(
@@ -46,7 +48,9 @@ data class AppealEntity(
             content,
             recipient,
             createDate,
-            lastModifiedDate,
+            answer,
+            answeredTime,
+            appealNumber,
             status
         )
 }

@@ -2,6 +2,7 @@ package uz.smartmuslim.adminpanel.domain.di
 
 
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -9,8 +10,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import uz.smartmuslim.fanlarakademiyasi.app.App
 import uz.smartmuslim.fanlarakademiyasi.data.remote.api.Api
 
@@ -28,6 +31,10 @@ class NetworkModule {
         OkHttpClient.Builder().addInterceptor(loggingInterceptor)
             .addInterceptor(ChuckerInterceptor(App.instance)).build()
 
+    var gson = GsonBuilder()
+        .setLenient()
+        .create()
+
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit =
         Retrofit
@@ -35,7 +42,7 @@ class NetworkModule {
             .baseUrl("http://10.0.2.2:8080/")
             .client(client)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
     @Provides

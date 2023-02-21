@@ -27,6 +27,9 @@ class UnreadPage : Fragment(R.layout.page_unread) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        binding.refresh.setOnClickListener {
+            viewModel.refresh()
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.message.collectLatest {
@@ -37,12 +40,19 @@ class UnreadPage : Fragment(R.layout.page_unread) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.unreadAppealList.collectLatest {
-                Log.d("SSS", it.toString())
-                toast("salom")
+                if (it.isEmpty()) {
+                    binding.text.visibility = View.VISIBLE
+                } else {
+                    binding.text.visibility = View.GONE
+                }
                 adapter.submitList(it)
             }
         }
 
         binding.rv.adapter = adapter
+
+        adapter.submitOnItemClickListener {
+            viewModel.onClickItem(it)
+        }
     }
 }

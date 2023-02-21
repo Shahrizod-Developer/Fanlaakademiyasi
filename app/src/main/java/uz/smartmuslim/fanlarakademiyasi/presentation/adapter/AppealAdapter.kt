@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.smartmuslim.fanlarakademiyasi.R
+import uz.smartmuslim.fanlarakademiyasi.app.App
 import uz.smartmuslim.fanlarakademiyasi.data.local.room.entity.AppealEntity
 import uz.smartmuslim.fanlarakademiyasi.data.model.AppealData
 import uz.smartmuslim.fanlarakademiyasi.databinding.ItemAppealBinding
@@ -15,19 +16,32 @@ import java.util.*
 
 class AppealAdapter : ListAdapter<AppealData, AppealAdapter.ViewHolder>(AppealDiffUtilCallback) {
 
+    private var onItemClickListener: ((AppealData) -> Unit)? = null
+
+    fun submitOnItemClickListener(block: (AppealData) -> Unit) {
+        onItemClickListener = block
+    }
+
     inner class ViewHolder(private val binding: ItemAppealBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+
+        init {
+            itemView.setOnClickListener {
+                onItemClickListener?.invoke(getItem(absoluteAdapterPosition))
+            }
+        }
 
         fun onBind() {
 
             val data = getItem(absoluteAdapterPosition)
             binding.fullName.text = data.fullName
             binding.appeal.text = data.content
-            binding.time.text = "12234"
+            binding.time.text = convertLongToTime(data.createDate)
 
             when (data.status) {
                 0 -> binding.image.setImageResource(R.drawable.unread)
-                1 -> binding.image.setImageResource(R.drawable.read)
+                1 -> binding.image.setImageResource(R.drawable.yellow)
                 2 -> binding.image.setImageResource(R.drawable.answered)
             }
         }
@@ -42,8 +56,9 @@ class AppealAdapter : ListAdapter<AppealData, AppealAdapter.ViewHolder>(AppealDi
             )
         )
     }
-   @SuppressLint("SimpleDateFormat")
-   private fun convertLongToTime(time: Long): String {
+
+    @SuppressLint("SimpleDateFormat")
+    private fun convertLongToTime(time: Long): String {
         val date = Date(time)
         val format = SimpleDateFormat("yyyy.MM.dd HH:mm")
         return format.format(date)
@@ -63,13 +78,13 @@ private val AppealDiffUtilCallback = object : DiffUtil.ItemCallback<AppealData>(
                 && oldItem.passportData == newItem.passportData
                 && oldItem.phoneNumber == newItem.phoneNumber
                 && oldItem.fullName == newItem.fullName
-                && oldItem.createDate == newItem.createDate
-                && oldItem.lastModifiedDate == newItem.lastModifiedDate
                 && oldItem.type == newItem.type
                 && oldItem.recipient == newItem.recipient
                 && oldItem.id == newItem.id
                 && oldItem.useId == newItem.useId
                 && oldItem.birthDate == newItem.birthDate
+                && oldItem.status == newItem.status
+                && oldItem.createDate == newItem.createDate
     }
 
 }

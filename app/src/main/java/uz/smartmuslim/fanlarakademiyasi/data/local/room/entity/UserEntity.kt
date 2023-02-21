@@ -22,8 +22,6 @@ data class UserEntity(
     val birthDate: String,
     @ColumnInfo(name = "create_date")
     val createDate: Long,
-    @ColumnInfo(name = "last_modified_date")
-    val lastModifiedDate: Long
 ) {
     fun toData() = UserData(
         id,
@@ -33,6 +31,5 @@ data class UserEntity(
         address,
         birthDate,
         createDate,
-        lastModifiedDate
     )
 }

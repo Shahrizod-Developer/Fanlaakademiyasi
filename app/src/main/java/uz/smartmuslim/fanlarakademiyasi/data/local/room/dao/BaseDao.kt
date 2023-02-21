@@ -1,14 +1,17 @@
 package uz.smartmuslim.fanlarakademiyasi.data.local.room.dao
 
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Update
 
 interface BaseDao<T> {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertIgnore(data: T)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(data: T)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(data: List<T>)
 
     @Update

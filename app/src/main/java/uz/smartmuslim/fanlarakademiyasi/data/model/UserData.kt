@@ -11,7 +11,6 @@ data class UserData(
     val address: String,
     val birthDate: String,
     val createDate: Long,
-    val lastModifiedDate: Long
 ) {
     fun toEntity() = UserEntity(
         id,
@@ -21,6 +20,5 @@ data class UserData(
         address,
         birthDate,
         createDate,
-        lastModifiedDate
     )
 }
