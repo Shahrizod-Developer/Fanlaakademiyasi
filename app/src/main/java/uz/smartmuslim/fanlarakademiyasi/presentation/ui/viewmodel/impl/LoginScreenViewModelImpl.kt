@@ -57,7 +57,6 @@ class LoginScreenViewModelImpl @Inject constructor(
                         }
                     }
                 }
-
             }
         }
 

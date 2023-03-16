@@ -27,6 +27,8 @@ class UnreadPage : Fragment(R.layout.page_unread) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        viewModel.refresh()
+
         binding.refresh.setOnClickListener {
             viewModel.refresh()
         }
@@ -34,7 +36,7 @@ class UnreadPage : Fragment(R.layout.page_unread) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.message.collectLatest {
                 Alerter.create(requireActivity()).setBackgroundColorRes(R.color.bg_circle)
-                    .setTitle("Login Message").setText(it).show()
+                    .setTitle("Message").setText(it).show()
             }
         }
 

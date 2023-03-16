@@ -40,4 +40,16 @@
     <string name="answered_time_s">Javob berilgan vaqt :</string>
     <string name="appeal_type">Taklif</string>
     <string name="appeal_type_s">Murojaat turi</string>
+    <string name="file_name">Fayl nomi</string>
+    <string name="file_name_s">Ariza.pdf</string>
+    <string name="file_size_s">Fayl o\'lchami</string>
+    <string name="file_size">1 MB</string>
+    <string name="file_type">pdf</string>
+    <string name="file_type_s">Fayl turi</string>
+    <string name="file_state">Yuklanmagan</string>
+    <string name="file_state_s">Fayl holati</string>
+    <string name="start_reading">Ochish</string>
+    <string name="downloading">Yuklanmoqda</string>
+    <string name="send_file_name_s">Javob fayli :</string>
+    <string name="send_file_name">Biriktirilmagan</string>
 </resources>

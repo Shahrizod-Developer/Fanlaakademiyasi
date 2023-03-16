@@ -33,7 +33,17 @@ data class AppealEntity(
     val answer: String,
     val answeredTime: Long,
     val appealNumber: Int,
-    var status: Int
+    var status: Int,
+    @ColumnInfo(name = "user_message_file_hash_id")
+    val userMessageFileHashId: String,
+    @ColumnInfo(name = "user_message_file_name")
+    val userMessageFileName: String,
+    @ColumnInfo(name = "admin_message_file_hash_id")
+    val adminMessageFileHashId: String,
+    @ColumnInfo(name = "admin_message_file_name")
+    val adminMessageFileName: String,
+    @ColumnInfo(name = "user_lang")
+    val userLang: String
 ) {
     fun toData() =
         AppealData(
@@ -51,6 +61,11 @@ data class AppealEntity(
             answer,
             answeredTime,
             appealNumber,
-            status
+            status,
+            userMessageFileHashId,
+            adminMessageFileHashId,
+            userMessageFileName,
+            adminMessageFileName,
+            userLang
         )
 }

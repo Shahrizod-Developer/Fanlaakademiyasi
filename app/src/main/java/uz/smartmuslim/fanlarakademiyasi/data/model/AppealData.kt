@@ -22,7 +22,12 @@ data class AppealData(
     var answer: String,
     var answeredTime: Long,
     val appealNumber: Int,
-    var status: Int
+    var status: Int,
+    val userMessageFileHashId: String,
+    val adminMessageFileHashId: String,
+    var userMessageFileName: String,
+    var adminMessageFileName: String,
+    var userLang: String
 ) : Parcelable {
     fun toEntity() = AppealEntity(
         id,
@@ -40,6 +45,11 @@ data class AppealData(
         answer,
         answeredTime,
         appealNumber,
-        status
+        status,
+        userMessageFileHashId,
+        adminMessageFileHashId,
+        userMessageFileName,
+        adminMessageFileName,
+        userLang
     )
 }

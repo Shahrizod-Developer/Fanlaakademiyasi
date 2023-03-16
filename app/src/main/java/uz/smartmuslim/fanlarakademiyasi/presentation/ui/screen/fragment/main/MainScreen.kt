@@ -25,17 +25,16 @@ class MainScreen : Fragment(R.layout.screen_main) {
             "O'qilgan",
             "Javob berilgan"
         )
+
         binding.viewPager.adapter = ViewPagerAdapter(requireActivity())
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = list[position]
         }.attach()
 
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.refresh()
-
-
     }
+
 }

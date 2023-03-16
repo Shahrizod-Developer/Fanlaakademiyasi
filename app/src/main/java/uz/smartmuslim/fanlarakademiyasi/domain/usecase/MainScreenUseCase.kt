@@ -13,4 +13,6 @@ interface MainScreenUseCase {
     fun getAllAnsweredAppeals(): Flow<List<AppealData>>
 
     fun refreshAppealData(): Flow<ResultData<Boolean>>
+
+
 }

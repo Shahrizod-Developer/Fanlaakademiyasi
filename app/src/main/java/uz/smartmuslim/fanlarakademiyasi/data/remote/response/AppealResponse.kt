@@ -1,42 +1,71 @@
 package uz.smartmuslim.fanlarakademiyasi.data.remote.response
 
+import com.google.gson.annotations.SerializedName
 import uz.smartmuslim.fanlarakademiyasi.data.local.room.entity.AppealEntity
 import java.util.*
 
 data class AppealResponse(
-    var id: String,
-    var userId: String,
-    var fullname: String,
-    var phoneNumber: String,
-    var passportSN: String,
-    var address: String,
-    var birthDate: String,
-    var messageType: String,
-    var content: String,
-    var recipient: String,
-    var createdDate: Long,
-    var answer: String,
-    var answeredTime: Long,
-    val appealNumber: Int,
-    var isComplete: Boolean,
+    @SerializedName("id")
+    var id: String? = null,
+    @SerializedName("userId")
+    var userId: String? = null,
+    @SerializedName("fullname")
+    var fullname: String? = null,
+    @SerializedName("phoneNumber")
+    var phoneNumber: String? = null,
+    @SerializedName("passportSN")
+    var passportSN: String? = null,
+    @SerializedName("address")
+    var address: String? = null,
+    @SerializedName("birthDate")
+    var birthDate: String? = null,
+    @SerializedName("messageType")
+    var messageType: String? = null,
+    @SerializedName("content")
+    var content: String? = null,
+    @SerializedName("recipient")
+    var recipient: String? = null,
+    @SerializedName("createdDate")
+    var createdDate: String? = null,
+    @SerializedName("isComplete")
+    var isComplete: String? = null,
+    @SerializedName("answer")
+    var answer: String? = null,
+    @SerializedName("answeredTime")
+    var answeredTime: String? = null,
+    @SerializedName("appealNumber")
+    var appealNumber: String? = null,
+    @SerializedName("userMessageFileHashId")
+    var userMessageFileHashId: String? = null,
+    @SerializedName("adminMessageFileHashId")
+    var adminMessageFileHashId: String? = null,
+    @SerializedName("userLang")
+    var userLang: String? = null
 ) {
-    fun toEntity() =
-        AppealEntity(
-            id,
-            userId,
-            fullname,
-            phoneNumber,
-            passportSN,
-            address,
-            birthDate,
-            messageType,
-            content,
-            recipient,
-            createdDate,
-            isComplete,
-            answer,
-            answeredTime,
-            appealNumber,
+    fun toEntity(): AppealEntity {
+
+        return AppealEntity(
+            id!!,
+            userId!!,
+            fullname!!,
+            phoneNumber!!,
+            passportSN!!,
+            address!!,
+            birthDate!!,
+            messageType!!,
+            content!!,
+            recipient!!,
+            createdDate!!.toLong(),
+            isComplete.toBoolean(),
+            answer!!,
+            answeredTime!!.toLong(),
+            appealNumber!!.toInt(),
             status = 0,
+            userMessageFileHashId!!,
+            "",
+            adminMessageFileHashId!!,
+            "",
+            userLang!!
         )
+    }
 }

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/top_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@color/face_bg_color"
+        android:elevation="@dimen/_10sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+
+            android:id="@+id/back"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:background="@drawable/back_image"
+            android:padding="@dimen/_8sdp"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="@id/top_title"
+            app:layout_constraintLeft_toLeftOf="@id/top_title"
+            app:layout_constraintTop_toTopOf="@id/top_title" />
+
+
+        <TextView
+
+            android:id="@+id/fileName"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/robo"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="Ariza"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/top_title"
+            app:layout_constraintLeft_toLeftOf="@id/top_title"
+            app:layout_constraintRight_toRightOf="@id/top_title"
+            app:layout_constraintTop_toTopOf="@id/top_title" />
+
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:id="@+id/open"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@drawable/back_style_next_button"
+            android:fontFamily="@font/robo"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:text="Ochish"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:id="@+id/btnDownloadOrReading"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@drawable/back_style_next_button"
+            android:fontFamily="@font/robo"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:text="Yuklab olish"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/top_title">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+
+                android:id="@+id/file_size"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/robo"
+                android:gravity="start"
+                android:justificationMode="inter_word"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/file_size"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+
+                android:id="@+id/file_size_s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/robo"
+                android:gravity="start"
+                android:justificationMode="inter_word"
+                android:text="@string/file_size_s"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/file_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/file_size" />
+
+
+            <TextView
+
+                android:id="@+id/file_type"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/robo"
+                android:gravity="start"
+                android:justificationMode="inter_word"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/file_type"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/file_size" />
+
+            <TextView
+
+                android:id="@+id/file_type_s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/robo"
+                android:gravity="start"
+                android:justificationMode="inter_word"
+                android:text="@string/file_type_s"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/file_type"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/file_type" />
+
+            <TextView
+
+                android:id="@+id/file_state"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/robo"
+                android:gravity="start"
+                android:justificationMode="inter_word"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/file_state"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/file_type" />
+
+            <TextView
+
+                android:id="@+id/file_state_s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/robo"
+                android:gravity="start"
+                android:justificationMode="inter_word"
+                android:text="@string/file_state_s"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/file_state"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/file_state" />
+
+
+            <ProgressBar
+                android:id="@+id/progress_download"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:progress="20"
+                android:progressBackgroundTint="@color/search_icon_color"
+                android:progressTint="@color/white"
+                android:visibility="invisible"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/progressText" />
+
+            <TextView
+                android:id="@+id/progressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:outlineAmbientShadowColor="@color/white"
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/file_state"
+                tools:text="73%" />
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                app:layout_constraintTop_toBottomOf="@id/progress_download" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

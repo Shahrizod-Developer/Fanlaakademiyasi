@@ -36,12 +36,13 @@ class AnsweredPage : Fragment(R.layout.page_answered) {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.answeredAppealList.collectLatest {
+            viewModel.answeredAppealList.collectLatest { it ->
                 if (it.isEmpty()) {
                     binding.text.visibility = View.VISIBLE
                 } else {
                     binding.text.visibility = View.GONE
                 }
+                it.sortedBy { it.answeredTime }
                 adapter.submitList(it)
             }
         }

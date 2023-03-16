@@ -52,6 +52,16 @@ class SendAnswerScreen : Fragment(R.layout.screen_send_answer) {
             "NATURAL_DEPARTMENT" -> binding.recipient.text = getString(R.string.natural)
             "OTHER_DEPARTMENT" -> binding.recipient.text = getString(R.string.other)
         }
+        if (data.userMessageFileName == "") {
+            binding.fileName.text = "Biriktirilmagan"
+        } else {
+            binding.fileName.text = data.userMessageFileName
+        }
+        if (data.adminMessageFileName == "") {
+            binding.sendFileName.text = "Biriktirilmagan"
+        } else {
+            binding.sendFileName.text = data.adminMessageFileName
+        }
 
     }
 

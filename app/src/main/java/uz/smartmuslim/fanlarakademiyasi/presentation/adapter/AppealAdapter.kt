@@ -37,7 +37,8 @@ class AppealAdapter : ListAdapter<AppealData, AppealAdapter.ViewHolder>(AppealDi
             val data = getItem(absoluteAdapterPosition)
             binding.fullName.text = data.fullName
             binding.appeal.text = data.content
-            binding.time.text = convertLongToTime(data.createDate)
+            if (data.answer != "") binding.time.text = convertLongToTime(data.answeredTime)
+            else binding.time.text = convertLongToTime(data.createDate)
 
             when (data.status) {
                 0 -> binding.image.setImageResource(R.drawable.unread)
@@ -85,6 +86,11 @@ private val AppealDiffUtilCallback = object : DiffUtil.ItemCallback<AppealData>(
                 && oldItem.birthDate == newItem.birthDate
                 && oldItem.status == newItem.status
                 && oldItem.createDate == newItem.createDate
+                && oldItem.userMessageFileHashId == newItem.userMessageFileHashId
+                && oldItem.adminMessageFileHashId == newItem.adminMessageFileHashId
+                && oldItem.userMessageFileName == newItem.userMessageFileName
+                && oldItem.adminMessageFileName == newItem.adminMessageFileName
+                && oldItem.userLang == newItem.userLang
     }
 
 }

@@ -10,7 +10,7 @@ import kotlin.reflect.KProperty
 abstract class SharedPreference(context: Context, preferences: SharedPreferences? = null) {
 
     private val pref =
-        preferences ?: context.getSharedPreferences(javaClass.canonicalName, Context.MODE_PRIVATE)
+        preferences ?: context.getSharedPreferences("salomlar", Context.MODE_PRIVATE)
 
     inner class Booleans(private val init: Boolean = false) :
         ReadWriteProperty<SharedPreference, Boolean> {

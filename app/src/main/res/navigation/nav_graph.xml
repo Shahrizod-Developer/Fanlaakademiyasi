@@ -56,5 +56,27 @@
             android:id="@+id/action_appealScreen_to_sendAnswerScreen"
             app:destination="@id/sendAnswerScreen"
             app:popUpTo="@id/mainScreen" />
+        <action
+            android:id="@+id/action_appealScreen_to_fileScreen"
+            app:destination="@id/fileScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/fileScreen"
+        android:name="uz.smartmuslim.fanlarakademiyasi.presentation.ui.screen.fragment.answer.FileScreen"
+        android:label="FileScreen" >
+        <argument
+            android:name="fileData"
+            app:argType="uz.smartmuslim.fanlarakademiyasi.data.model.FileData" />
+        <action
+            android:id="@+id/action_fileScreen_to_readFileScreen"
+            app:destination="@id/readFileScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/readFileScreen"
+        android:name="uz.smartmuslim.fanlarakademiyasi.presentation.ui.screen.fragment.answer.ReadFileScreen"
+        android:label="ReadFileScreen" >
+        <argument
+            android:name="fileData"
+            app:argType="uz.smartmuslim.fanlarakademiyasi.data.model.FileData" />
     </fragment>
 </navigation>

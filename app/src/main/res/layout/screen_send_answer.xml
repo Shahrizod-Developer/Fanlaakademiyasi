@@ -15,7 +15,6 @@
         android:elevation="@dimen/_10sdp"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <ImageView
 
             android:id="@+id/back"
@@ -382,6 +381,45 @@
 
             <TextView
 
+                android:id="@+id/file_name"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/robo"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:gravity="start"
+                android:justificationMode="inter_word"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/file_name_s"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/time" />
+
+
+            <TextView
+
+                android:id="@+id/file_name_s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/robo"
+                android:gravity="start"
+                android:justificationMode="inter_word"
+                android:text="@string/file_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/file_name"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/file_name" />
+
+
+            <TextView
+
                 android:id="@+id/answer"
                 android:layout_width="@dimen/_180sdp"
                 android:layout_height="wrap_content"
@@ -395,7 +433,8 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/time" />
+                app:layout_constraintTop_toBottomOf="@id/file_name" />
+
 
             <TextView
 
@@ -430,7 +469,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/answer" />
+                app:layout_constraintTop_toBottomOf="@id/send_file_name" />
 
             <TextView
 
@@ -448,6 +487,44 @@
                 app:layout_constraintBottom_toBottomOf="@id/answered_time"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/answered_time" />
+            <TextView
+
+                android:id="@+id/send_file_name"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/robo"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:gravity="start"
+                android:justificationMode="inter_word"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/send_file_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/answer" />
+
+
+            <TextView
+
+                android:id="@+id/send_file_name_s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/robo"
+                android:gravity="start"
+                android:justificationMode="inter_word"
+                android:text="@string/send_file_name_s"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/send_file_name"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/send_file_name" />
+
 
 
             <View

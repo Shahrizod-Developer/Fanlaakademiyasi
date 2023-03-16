@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import uz.smartmuslim.fanlarakademiyasi.data.model.AppealData
+import uz.smartmuslim.fanlarakademiyasi.data.utils.hasConnection
 import uz.smartmuslim.fanlarakademiyasi.domain.usecase.MainScreenUseCase
 import uz.smartmuslim.fanlarakademiyasi.presentation.direction.MainScreenDirection
 import uz.smartmuslim.fanlarakademiyasi.presentation.ui.viewmodel.MainScreenViewModel
@@ -25,10 +26,13 @@ class MainScreenViewModelImpl @Inject constructor(
     override val unreadAppealList = flow<List<AppealData>>()
     override val readAppealList = flow<List<AppealData>>()
     override val answeredAppealList = flow<List<AppealData>>()
+
+
     override fun refresh() {
         viewModelScope.launch {
             useCase.refreshAppealData().collectLatest { it ->
-                it.onSuccess {}.onMessage { message.emit(it.toString()) }
+                it.onSuccess {}
+                    .onMessage { message.emit(it.toString()) }
                     .onError { message.emit(it.toString()) }
             }
         }
@@ -39,7 +43,6 @@ class MainScreenViewModelImpl @Inject constructor(
             direction.openAppealScreen(appealData)
         }
     }
-
 
     init {
 
