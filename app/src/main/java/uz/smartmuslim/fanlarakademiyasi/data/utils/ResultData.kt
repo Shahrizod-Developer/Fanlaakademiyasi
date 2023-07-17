@@ -11,7 +11,6 @@ sealed class ResultData<out T> {
     val isError = this is Error
     val isMessage = this is Message
 
-
     inline fun onSuccess(block: (T) -> Unit): ResultData<T> {
         if (this is Success<T>) block(this.data)
         return this
