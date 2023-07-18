@@ -103,6 +103,7 @@ class FileScreen : Fragment(R.layout.screen_file) {
             hasPermissionApp(permissionList) {
 
                 if (it == 1) {
+                    Log.d("TTT", "url = " + file)
                     viewModel.downloadFile(file)
                     binding.btnDownloadOrReading.text =
                         resources.getString(R.string.downloading)

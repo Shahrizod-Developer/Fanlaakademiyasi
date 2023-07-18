@@ -31,15 +31,12 @@ class NetworkModule {
         OkHttpClient.Builder().addInterceptor(loggingInterceptor)
             .addInterceptor(ChuckerInterceptor(App.instance)).build()
 
-    var gson = GsonBuilder()
-        .setLenient()
-        .create()
 
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit =
         Retrofit
             .Builder()
-            .baseUrl("https://da15-213-230-110-100.eu.ngrok.io/")
+            .baseUrl("https://0356-213-230-110-100.ngrok.io/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
