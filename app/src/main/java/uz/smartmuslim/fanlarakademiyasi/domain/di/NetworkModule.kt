@@ -36,7 +36,7 @@ class NetworkModule {
     fun provideRetrofit(client: OkHttpClient): Retrofit =
         Retrofit
             .Builder()
-            .baseUrl("https://0356-213-230-110-100.ngrok.io/")
+            .baseUrl("https://a3ad-213-230-110-100.ngrok.io/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

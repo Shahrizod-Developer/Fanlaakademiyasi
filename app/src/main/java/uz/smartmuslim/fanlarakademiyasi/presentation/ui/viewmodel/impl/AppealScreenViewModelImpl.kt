@@ -38,7 +38,7 @@ class AppealScreenViewModelImpl @Inject constructor(
     override val saveFile = flow<Boolean>()
 
     override fun getFileByHashId(hashId: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             useCase.getFileByHashId(hashId).collectLatest {
                 fileData.emit(it)
             }
@@ -108,10 +108,12 @@ class AppealScreenViewModelImpl @Inject constructor(
                             loading.emit(false)
                             successMessage.emit(it.data)
                         }
+
                         is ResultData.Error -> {
                             loading.emit(false)
                             errorMessage.emit(it.toString())
                         }
+
                         is ResultData.Message -> {
                             loading.emit(false)
                             message.emit(it.message.getMessageString(context))

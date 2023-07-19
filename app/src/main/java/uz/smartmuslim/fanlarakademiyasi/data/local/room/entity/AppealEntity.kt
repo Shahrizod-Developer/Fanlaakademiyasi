@@ -4,9 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import uz.smartmuslim.fanlarakademiyasi.data.model.AppealData
-import uz.smartmuslim.fanlarakademiyasi.data.model.AppealType
-import uz.smartmuslim.fanlarakademiyasi.data.model.Recipient
-import java.util.UUID
 
 @Entity(tableName = "appeal")
 data class AppealEntity(

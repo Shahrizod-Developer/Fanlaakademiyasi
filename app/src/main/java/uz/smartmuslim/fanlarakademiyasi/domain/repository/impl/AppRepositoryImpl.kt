@@ -93,8 +93,9 @@ class AppRepositoryImpl @Inject constructor(
     override fun getAllFiles(): Flow<ResultData<Boolean>> = channelFlow {
         try {
             val response = api.getAllFiles()
-            val data = response.body()
 
+            Log.d("TTT", "getAllFiles = " + response.body())
+            val data = response.body()
             if (data != null) {
                 when (response.code()) {
                     in 200..299 -> {
@@ -178,13 +179,11 @@ class AppRepositoryImpl @Inject constructor(
 
         try {
             val data = response.body()
-            Log.d("JJJ", "body + " + data.toString())
             if (data != null) {
                 when (response.code()) {
                     in 200..299 -> {
 
                         val list = data.map { it.toEntity() }.toList()
-                        Log.d("JJJ", "list + " + list.toString())
                         list.map {
                             if (it.answer.isEmpty()) {
                                 it.status = 0
@@ -196,9 +195,11 @@ class AppRepositoryImpl @Inject constructor(
                         }
                         send(ResultData.Success(true))
                     }
+
                     in 400..499 -> {
                         send(ResultData.Message(MessageData.messageText("Notog'ri so'rov")))
                     }
+
                     in 500..599 -> {
                         send(
                             ResultData.Message(
@@ -232,9 +233,11 @@ class AppRepositoryImpl @Inject constructor(
                             Log.d("GGG", "500..599 ->" + "200..299" + data.message)
                             send(ResultData.Success(data.message))
                         }
+
                         in 400..499 -> {
                             send(ResultData.Message(MessageData.messageText("Notog'ri so'rov")))
                         }
+
                         in 500..599 -> {
                             Log.d("GGG", "500..599 ->" + response.errorBody().toString())
                             send(
@@ -254,40 +257,52 @@ class AppRepositoryImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
 
     override fun getFileByHashId(hashId: String) = channelFlow<FileData> {
-        fileDao.getFileByHashId(hashId).collectLatest {
+        fileDao.getFileByHashId(hashId).onEach {
+
             if (it != null) {
+
                 send(it.toData())
             }
-        }
+        }.collect()
     }.flowOn(Dispatchers.IO)
 
-    override fun downloadFile(fileData: FileData) = callbackFlow<ResultData<Result>> {
+    override fun downloadFile(imageEntity: FileData): Flow<ResultData<Result>> = callbackFlow {
 
         EPRDownloader.download(
-            fileData.fileUrl,
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path,
-            fileData.name
-        ).setTag(fileData.id).build().addOnStartOrResumeListener {
-            trySend(ResultData.success(Result.Start))
-        }.addOnProgressListener {
-            trySend(ResultData.Success(Result.Progress(it.currentBytes, it.totalBytes)))
-        }.addOnDownloadListener(object : com.arefbhrn.eprdownloader.OnDownloadListener {
-            override fun onDownloadComplete() {
-                trySend(ResultData.Success(Result.End(fileData.name)))
+            convertShortUrlToRealUrl(imageEntity.fileUrl),
+            context.filesDir.path,
+            "${imageEntity.name}.pdf"
+        )
+            .setTag(imageEntity.hashId)
+            .build()
+            .addOnStartOrResumeListener {
+                trySend(ResultData.Success(Result.Start))
             }
+            .addOnProgressListener {
+                trySend(ResultData.Success(Result.Progress(it.currentBytes, it.totalBytes)))
+            }.addOnDownloadListener(object : com.arefbhrn.eprdownloader.OnDownloadListener {
+                override fun onDownloadComplete() {
+                    trySend(ResultData.Success(Result.End(imageEntity.name)))
+                }
 
-            override fun onError(error: com.arefbhrn.eprdownloader.Error?) {
-                trySend(
-                    ResultData.Success(
-                        Result.Error(
-                            error?.serverErrorMessage ?: "Noma'lum xato"
+                override fun onError(error: com.arefbhrn.eprdownloader.Error?) {
+                    trySend(
+                        ResultData.Success(
+                            Result.Error(
+                                error?.serverErrorMessage ?: "Unknown error"
+                            )
                         )
                     )
-                )
-            }
-        }).start()
+                }
+            })
+            .start()
+        awaitClose { }
+    }
 
-        awaitClose {}
+    fun convertShortUrlToRealUrl(shortUrl: String): String {
+        val asteriskCount = shortUrl.count { it == '*' }
+        val realUrl = shortUrl.replace("*", "")
+        return realUrl.substring(0, realUrl.length - asteriskCount)
     }
 
     override fun uploadFile(
@@ -308,9 +323,11 @@ class AppRepositoryImpl @Inject constructor(
                     in 200..299 -> {
                         emit(ResultData.Success(true))
                     }
+
                     in 400..499 -> {
                         emit(ResultData.Message(MessageData.messageText("Noto'g'ri so'rov")))
                     }
+
                     in 500..599 -> {
                     }
                 }

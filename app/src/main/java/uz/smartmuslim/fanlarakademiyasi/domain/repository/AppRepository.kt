@@ -7,6 +7,7 @@ import uz.smartmuslim.fanlarakademiyasi.data.model.AuthData
 import uz.smartmuslim.fanlarakademiyasi.data.model.FileData
 import uz.smartmuslim.fanlarakademiyasi.data.model.UserData
 import uz.smartmuslim.fanlarakademiyasi.data.utils.ResultData
+import uz.smartmuslim.fanlarakademiyasi.domain.repository.impl.Result
 import java.io.File
 
 interface AppRepository {
@@ -25,6 +26,6 @@ interface AppRepository {
     fun getAllFiles(): Flow<ResultData<Boolean>>
     suspend fun updateFIle(filed: FileData)
     fun getFileByHashId(hashId: String): Flow<FileData>
-    fun downloadFile(filed: FileData): Flow<ResultData<uz.smartmuslim.fanlarakademiyasi.domain.repository.impl.Result>>
+    fun downloadFile(filed: FileData): Flow<ResultData<Result>>
     fun uploadFile(userId: String, file: File, messageId:String): Flow<ResultData<Boolean>>
 }

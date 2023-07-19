@@ -11,14 +11,4 @@ data class UserData(
     val address: String,
     val birthDate: String,
     val createDate: Long,
-) {
-    fun toEntity() = UserEntity(
-        id,
-        fullName,
-        phoneNumber,
-        passportSN,
-        address,
-        birthDate,
-        createDate,
-    )
-}
+)

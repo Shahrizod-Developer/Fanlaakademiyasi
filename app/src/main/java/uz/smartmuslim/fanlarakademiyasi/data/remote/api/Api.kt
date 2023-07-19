@@ -18,7 +18,7 @@ interface Api {
     @GET("/api/messages/v1/completed")
     suspend fun getAllAppeal(): Response<List<AppealResponse>>
 
-    @GET("/api/files/v1")
+    @GET("/api/files/v1/all")
     suspend fun getAllFiles(): Response<List<FileResponse>>
 
     @Multipart

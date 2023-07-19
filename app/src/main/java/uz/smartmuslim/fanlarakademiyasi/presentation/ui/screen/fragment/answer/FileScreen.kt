@@ -98,22 +98,26 @@ class FileScreen : Fragment(R.layout.screen_file) {
         binding.open.setOnClickListener {
             startActivity(Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
         }
-        binding.btnDownloadOrReading.clicks().debounce(100L).onEach {
+        binding.btnDownloadOrReading.clicks().debounce(100L)
+            .onEach {
+                if (file.isDownload == 1) {
+                    viewModel.openReadFile(file)
+                } else {
+                    hasPermissionApp(permissionList) {
+                        if (it == 1) {
+                            Log.d("TTT", "file url = " + file.fileUrl)
+                            viewModel.downloadFile(file)
+                            binding.btnDownloadOrReading.text =
+                                resources.getString(R.string.downloading)
+                            binding.btnDownloadOrReading.isEnabled = false
 
-            hasPermissionApp(permissionList) {
-
-                if (it == 1) {
-                    Log.d("TTT", "url = " + file)
-                    viewModel.downloadFile(file)
-                    binding.btnDownloadOrReading.text =
-                        resources.getString(R.string.downloading)
-                    binding.btnDownloadOrReading.isEnabled = false
-
-                    binding.progressDownload.visibility = View.VISIBLE
-                    binding.progressText.visibility = View.VISIBLE
+                            binding.progressDownload.visibility = View.VISIBLE
+                            binding.progressText.visibility = View.VISIBLE
+                        }
+                    }
                 }
-            }
-        }.launchIn(lifecycleScope)
+            }.launchIn(lifecycleScope)
+
 
         binding.back.setOnClickListener {
             findNavController().popBackStack()

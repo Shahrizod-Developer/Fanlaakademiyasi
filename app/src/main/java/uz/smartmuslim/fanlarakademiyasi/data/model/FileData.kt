@@ -8,18 +8,17 @@ import uz.smartmuslim.fanlarakademiyasi.data.local.room.entity.FileEntity
 
 @Parcelize
 data class FileData(
-    val id: String,
-    val uploadPath: String,
-    val hashId: String,
-    val name: String,
-    val fileSize: Long,
-    val contentType: String,
-    val download: Int,
-    val extension: String,
-    val fileUrl: String,
-    val isDownload: Int
+    val hashId: String = "",
+    val name: String = "",
+    val extension: String = "",
+    val fileSize: Long = 0L,
+    val data: String = "",
+    val fileUrl: String = "",
+    val uploadPath: String = "",
+    val download: Int = 0,
+    val isDownload: Int = 0
 ) : Parcelable {
     fun toEntity() = FileEntity(
-        id, uploadPath, hashId, name, fileSize, contentType, download, extension, fileUrl, isDownload
+        hashId, name, extension, fileSize, data, fileUrl, uploadPath
     )
 }

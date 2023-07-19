@@ -67,7 +67,7 @@ class AppealScreen : Fragment(R.layout.screen_appeal) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         viewModel.refreshFiles()
-        var fileData = FileData("", "", "", "", 0L, "", 0, "", "", 0)
+        var fileData = FileData()
         val data = appealData.appeal
         data.status = 1
         var answer = ""
@@ -209,8 +209,10 @@ class AppealScreen : Fragment(R.layout.screen_appeal) {
         } else {
             viewLifecycleOwner.lifecycleScope.launch {
                 viewModel.fileData.collectLatest {
+                    Log.d("TTT", "userMessageFileHashId = " + data.userMessageFileHashId)
                     binding.fileName.text = it.name
-                    fileData = it.copy()
+                    fileData = it
+                    Log.d("TTT", "fileData vi = " + it)
                     data.userMessageFileName = it.name
                     viewModel.appealRead(data)
                 }
@@ -230,6 +232,7 @@ class AppealScreen : Fragment(R.layout.screen_appeal) {
         }
 
         binding.fileName.setOnClickListener {
+            Log.d("TTT", "fileData = " + fileData)
             viewModel.openFileScreen(fileData)
         }
 

@@ -1,15 +1,12 @@
 package uz.smartmuslim.fanlarakademiyasi.presentation.ui.viewmodel.impl
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import uz.smartmuslim.fanlarakademiyasi.domain.repository.impl.Result
 import uz.smartmuslim.fanlarakademiyasi.data.model.FileData
 import uz.smartmuslim.fanlarakademiyasi.data.utils.flow
 import uz.smartmuslim.fanlarakademiyasi.data.utils.hasConnection
@@ -18,7 +15,7 @@ import uz.smartmuslim.fanlarakademiyasi.presentation.direction.FileScreenDirecti
 import uz.smartmuslim.fanlarakademiyasi.presentation.ui.viewmodel.BaseViewModel
 import uz.smartmuslim.fanlarakademiyasi.presentation.ui.viewmodel.FileScreenViewModel
 import javax.inject.Inject
-
+import uz.smartmuslim.fanlarakademiyasi.domain.repository.impl.Result
 
 @HiltViewModel
 class FileScreenViewModelImpl @Inject constructor(
@@ -41,21 +38,22 @@ class FileScreenViewModelImpl @Inject constructor(
     }
 
     override fun downloadFile(fileData: FileData) {
-
         viewModelScope.launch(Dispatchers.IO) {
             if (hasConnection()) {
                 useCase.downloadFile(fileData).collectLatest {
                     it.onSuccess { result ->
                         when (result) {
-                            Result.Start -> {
-
+                            is Result.Start -> {
                             }
+
                             is Result.Progress -> {
                                 useCase.updateFile(fileData.copy(download = ((result.current * 100) / result.total).toInt()))
                             }
+
                             is Result.Error -> {
                                 baseViewModel.errorSharedFlow.emit(result.message)
                             }
+
                             is Result.End -> {
                                 useCase.updateFile(
                                     fileData.copy(
@@ -67,8 +65,6 @@ class FileScreenViewModelImpl @Inject constructor(
                         }
                     }
                 }
-            } else {
-                message.emit("Internet aloqasi mavjud emas")
             }
         }
     }

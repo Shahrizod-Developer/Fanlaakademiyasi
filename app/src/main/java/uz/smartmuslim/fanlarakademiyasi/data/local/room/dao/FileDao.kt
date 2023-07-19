@@ -9,6 +9,6 @@ import uz.smartmuslim.fanlarakademiyasi.data.local.room.entity.FileEntity
 @Dao
 interface FileDao : BaseDao<FileEntity> {
 
-    @Query("Select * From file Where hash_id = :hashId")
+    @Query("Select * From file Where hashId = :hashId")
     fun getFileByHashId(hashId: String): Flow<FileEntity>
 }
